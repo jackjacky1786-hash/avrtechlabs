@@ -24,6 +24,7 @@ const GithubIcon = ({ className = "w-4 h-4 fill-currentColor" }) => (
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [detailItem, setDetailItem] = useState(null);
 
   // Stack Manifest Advisor State
@@ -603,13 +604,27 @@ echo "AVR Tech Labs: IP Handover Complete"`,
             <a href="#tech-section" onClick={() => setDetailItem(null)} className="hover:text-[#00f2fe] transition-colors">Stack</a>
             <a href="#advantage" onClick={() => setDetailItem(null)} className="hover:text-emerald-400 transition-colors">Advantage</a>
             <a href="#capabilities" onClick={() => setDetailItem(null)} className="hover:text-[#9d4edd] transition-colors">Capabilities</a>
-            <a href="#rfp" onClick={() => setDetailItem(null)} className="hover:text-amber-400 transition-colors">RFP Builder</a>
-            <a href="#portfolio" onClick={() => setDetailItem(null)} className="hover:text-[#f72585] transition-colors">Work</a>
+            <a href="#rfp" onClick={() => setDetailItem(null)} className="hover:text-amber-400 transition-colors">RFP</a>
+            <a href="#portfolio" onClick={() => setDetailItem(null)} className="hover:text-[#f72585] transition-colors">Portfolio</a>
             <a href="#estimator" onClick={() => setDetailItem(null)} className="hover:text-amber-400 transition-colors">Estimator</a>
             <a href="#contact" onClick={() => setDetailItem(null)} className="hover:text-[#00f2fe] transition-colors">Contact</a>
           </nav>
 
           <div className="flex items-center gap-3">
+            {/* Mobile Hamburger Toggle Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden text-slate-300 hover:text-white p-1.5 rounded-lg border border-cyan-500/30 focus:outline-none"
+              aria-label="Toggle Navigation"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
             <a 
               href="https://github.com/jackjacky1786-hash" 
               target="_blank" 
@@ -637,6 +652,19 @@ echo "AVR Tech Labs: IP Handover Complete"`,
             </a>
           </div>
         </div>
+        {/* Mobile Dropdown Menu Items */}
+        {isMenuOpen && (
+          <div className="lg:hidden w-full bg-[#070b14]/95 border-b border-cyan-500/20 px-6 py-4 space-y-3 font-mono text-sm backdrop-blur-xl shadow-2xl">
+            <a href="#hero" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-[#00f2fe] py-1 border-b border-slate-800">Home</a>
+            <a href="#tech-section" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-[#00f2fe] py-1 border-b border-slate-800">Stack</a>
+            <a href="#advantage" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-emerald-400 py-1 border-b border-slate-800">Advantage</a>
+            <a href="#capabilities" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-[#9d4edd] py-1 border-b border-slate-800">Capabilities</a>
+            <a href="#rfp" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-amber-400 py-1 border-b border-slate-800">RFP Scope</a>
+            <a href="#portfolio" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-[#f72585] py-1 border-b border-slate-800">Portfolio</a>
+            <a href="#estimator" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-amber-400 py-1 border-b border-slate-800">Estimator</a>
+            <a href="#contact" onClick={() => { setDetailItem(null); setIsMenuOpen(false); }} className="block text-slate-300 hover:text-[#00f2fe] py-1">Contact</a>
+          </div>
+        )}
       </header>
 
       {/* ========================================================================= */}
